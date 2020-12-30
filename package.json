@@ -16,6 +16,7 @@
     "twind": "^0.10.2"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.5.19",
     "@types/node": "^14.14.16",
     "@types/react": "^17.0.0",
     "typescript": "^4.1.3"
