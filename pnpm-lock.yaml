@@ -3,12 +3,14 @@ dependencies:
   next: 10.0.4_c39e9db791ea05e3ec4e0e74abb7a6b5
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
-  react-leaflet: 3.0.5_09d6067ecd174b3b583fc8cfec228ea2
+  react-leaflet: 2.8.0_09d6067ecd174b3b583fc8cfec228ea2
+  react-leaflet-universal: 2.2.1_f3a4cee384100ed96d7bb4d0ff3c4254
   twind: 0.10.2_typescript@4.1.3
 devDependencies:
   '@types/leaflet': 1.5.19
   '@types/node': 14.14.16
   '@types/react': 17.0.0
+  '@types/react-leaflet': 2.5.2
   typescript: 4.1.3
 lockfileVersion: 5.2
 packages:
@@ -170,18 +172,6 @@ packages:
       node: '>=8.0.0'
     resolution:
       integrity: sha512-sDOAZcYwynHFTbLo6n8kIbLiVF3a3BLkrmehJUyEbT9F+Smbi47kLGS2gG2g0fjBLR/Lr1InPD7kXL7FaTqEkw==
-  /@react-leaflet/core/1.0.2_09d6067ecd174b3b583fc8cfec228ea2:
-    dependencies:
-      leaflet: 1.7.1
-      react: 17.0.1
-      react-dom: 17.0.1_react@17.0.1
-    dev: false
-    peerDependencies:
-      leaflet: ^1.7.1
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    resolution:
-      integrity: sha512-QbleYZTMcgujAEyWGki8Lx6cXQqWkNtQlqf5c7NImlIp8bKW66bFpez/6EVatW7+p9WKBOEOVci/9W7WW70EZg==
   /@types/geojson/7946.0.7:
     dev: true
     resolution:
@@ -204,6 +194,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
+  /@types/react-leaflet/2.5.2:
+    dependencies:
+      '@types/leaflet': 1.5.19
+      '@types/react': 17.0.0
+    dev: true
+    resolution:
+      integrity: sha512-XBNFsBm4wQiz6BpzUMJAMXru+h2ESyW/mAdPoSzEirtF/g0NOwbUvPYnZtpbiW70AEXT40ZONtsu3lxwr/yliA==
   /@types/react/17.0.0:
     dependencies:
       '@types/prop-types': 15.7.3
@@ -1092,7 +1089,7 @@ packages:
       cssesc: 3.0.0
       icss-utils: 4.1.1
       loader-utils: 2.0.0
-      postcss: 7.0.35
+      postcss: 7.0.32
       postcss-modules-extract-imports: 2.0.0
       postcss-modules-local-by-default: 3.0.3
       postcss-modules-scope: 2.2.0
@@ -1131,14 +1128,14 @@ packages:
   /cssnano-preset-simple/1.2.1:
     dependencies:
       caniuse-lite: 1.0.30001171
-      postcss: 7.0.35
+      postcss: 7.0.32
     dev: false
     resolution:
       integrity: sha512-B2KahOIFTV6dw5Ioy9jHshTh/vAYNnUB2enyWRgnAEg3oJBjI/035ExpePaMqS2SwpbH7gCgvQqwpMBH6hTJSw==
   /cssnano-simple/1.2.1:
     dependencies:
       cssnano-preset-simple: 1.2.1
-      postcss: 7.0.35
+      postcss: 7.0.32
     dev: false
     resolution:
       integrity: sha512-9vOyjw8Dj/T12kIOnXPZ5VnEIo6F3YMaIn0wqJXmn277R58cWpI3AvtdlCBtohX7VAUNYcyk2d0dKcXXkb5I6Q==
@@ -1811,6 +1808,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-0nRXAQJabHdabFRXk+1QL8DGSaE=
+  /hoist-non-react-statics/3.3.2:
+    dependencies:
+      react-is: 16.13.1
+    dev: false
+    resolution:
+      integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
   /htmlparser2/5.0.1:
     dependencies:
       domelementtype: 2.1.0
@@ -1855,7 +1858,7 @@ packages:
       integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
   /icss-utils/4.1.1:
     dependencies:
-      postcss: 7.0.35
+      postcss: 7.0.32
     dev: false
     engines:
       node: '>= 6'
@@ -2824,7 +2827,7 @@ packages:
       integrity: sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
   /postcss-modules-extract-imports/2.0.0:
     dependencies:
-      postcss: 7.0.35
+      postcss: 7.0.32
     dev: false
     engines:
       node: '>= 6'
@@ -2833,7 +2836,7 @@ packages:
   /postcss-modules-local-by-default/3.0.3:
     dependencies:
       icss-utils: 4.1.1
-      postcss: 7.0.35
+      postcss: 7.0.32
       postcss-selector-parser: 6.0.4
       postcss-value-parser: 4.1.0
     dev: false
@@ -2843,7 +2846,7 @@ packages:
       integrity: sha512-e3xDq+LotiGesympRlKNgaJ0PCzoUIdpH0dj47iWAui/kyTgh3CiAr1qP54uodmJhl6p9rN6BoNcdEDVJx9RDw==
   /postcss-modules-scope/2.2.0:
     dependencies:
-      postcss: 7.0.35
+      postcss: 7.0.32
       postcss-selector-parser: 6.0.4
     dev: false
     engines:
@@ -2853,13 +2856,13 @@ packages:
   /postcss-modules-values/3.0.0:
     dependencies:
       icss-utils: 4.1.1
-      postcss: 7.0.35
+      postcss: 7.0.32
     dev: false
     resolution:
       integrity: sha512-1//E5jCBrZ9DmRX+zCtmQtRSV6PV42Ix7Bzj9GbwJceduuf7IqP8MgeTXuRDHOWj2m0VzZD5+roFWDuU8RQjcg==
   /postcss-safe-parser/4.0.2:
     dependencies:
-      postcss: 7.0.35
+      postcss: 7.0.32
     dev: false
     engines:
       node: '>=6.0.0'
@@ -2900,16 +2903,6 @@ packages:
       node: '>=6.0.0'
     resolution:
       integrity: sha512-03eXong5NLnNCD05xscnGKGDZ98CyzoqPSMjOe6SuoQY7Z2hIj0Ld1g/O/UQRuOle2aRtiIRDg9tDcTGAkLfKw==
-  /postcss/7.0.35:
-    dependencies:
-      chalk: 2.4.2
-      source-map: 0.6.1
-      supports-color: 6.1.0
-    dev: false
-    engines:
-      node: '>=6.0.0'
-    resolution:
-      integrity: sha512-3QT8bBJeX/S5zKTTjTCIjRF3If4avAT6kqxcASlTWEtAFCb9NH0OUxNDfgZSWdP5fJnBYCMEWkIFfWeugjzYMg==
   /postcss/8.1.7:
     dependencies:
       colorette: 1.2.1
@@ -3080,19 +3073,35 @@ packages:
     dev: false
     resolution:
       integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
-  /react-leaflet/3.0.5_09d6067ecd174b3b583fc8cfec228ea2:
+  /react-leaflet-universal/2.2.1_f3a4cee384100ed96d7bb4d0ff3c4254:
     dependencies:
-      '@react-leaflet/core': 1.0.2_09d6067ecd174b3b583fc8cfec228ea2
+      react: 17.0.1
+      react-dom: 17.0.1_react@17.0.1
+      react-leaflet: 2.8.0_09d6067ecd174b3b583fc8cfec228ea2
+    dev: false
+    peerDependencies:
+      prop-types: ^15.5.7
+      react: ^15.x || ^16.x
+      react-dom: ^15.x || ^16.x
+      react-leaflet: ^2.0.1
+    resolution:
+      integrity: sha512-5eXeAylLcHQSjD06DV6Po98NntShXVI47Kj+uZQSG0byfJDbbFOHFPCLcVZa7kY/TAqXuQq8BK4RyV7kPhf70A==
+  /react-leaflet/2.8.0_09d6067ecd174b3b583fc8cfec228ea2:
+    dependencies:
+      '@babel/runtime': 7.12.5
+      fast-deep-equal: 3.1.3
+      hoist-non-react-statics: 3.3.2
       leaflet: 1.7.1
       react: 17.0.1
       react-dom: 17.0.1_react@17.0.1
+      warning: 4.0.3
     dev: false
     peerDependencies:
-      leaflet: ^1.7.1
-      react: ^17.0.1
-      react-dom: ^17.0.1
+      leaflet: ^1.6.0
+      react: ^16.8.0 || ^17.0.0
+      react-dom: ^16.8.0  || ^17.0.0
     resolution:
-      integrity: sha512-0hJwwRMo5ChY+0nr1yO/UDCT4alIqMgJ7S/HoMBkL65Sr1yJ8eX5lAXk3EkdBUOwxQlMYCduU87pczYmudnlbQ==
+      integrity: sha512-Y7oHtNrrlRH8muDttXf+jZ2Ga/X7jneSGi1GN8uEdeCfLProTqgG2Zoa5TfloS3ZnY20v7w+DIenMG59beFsQw==
   /react-refresh/0.8.3:
     dev: false
     engines:
@@ -4028,6 +4037,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+  /warning/4.0.3:
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
+    resolution:
+      integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
   /watchpack-chokidar2/2.0.1:
     dependencies:
       chokidar: 2.1.8
@@ -4162,10 +4177,12 @@ specifiers:
   '@types/leaflet': ^1.5.19
   '@types/node': ^14.14.16
   '@types/react': ^17.0.0
+  '@types/react-leaflet': ^2.5.2
   leaflet: ^1.7.1
   next: 10.0.4
   react: 17.0.1
   react-dom: 17.0.1
-  react-leaflet: ^3.0.5
+  react-leaflet: ^2.8.0
+  react-leaflet-universal: ^2.2.1
   twind: ^0.10.2
   typescript: ^4.1.3
