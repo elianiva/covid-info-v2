@@ -1,11 +1,10 @@
 import { GetStaticProps } from "next"
 import { useEffect, useState } from "react"
 import { tw } from "twind"
-import { fetchData } from "../utils/fetchData"
+import { MapData, fetchData } from "../utils"
 import { Country, CountryGeoJSON } from "../types"
 import MapBox from "../components/MapBox"
 import ChartBox from "../components/ChartBox"
-import MapData from "../utils/mapData"
 import * as countryData from "../data/countries.json"
 
 export default function Home({

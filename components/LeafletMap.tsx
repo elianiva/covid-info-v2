@@ -1,15 +1,13 @@
 import { tw } from "twind"
 import { Map, GeoJSON } from "react-leaflet-universal"
 import { CountryGeoJSON, Feature } from "../types"
+import { formatNumber } from "../utils"
 
 export default function LaefletMap({
   mapData,
 }: {
   mapData: CountryGeoJSON | null
 }) {
-  const formatNumber = (num: number): string =>
-    num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-
   const eachFeature = (country: Feature, layer: any) => {
     const name: string = country.properties.name
     const confirmedText: string = formatNumber(
