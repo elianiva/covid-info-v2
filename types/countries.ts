@@ -7,7 +7,7 @@ interface CountryInfo {
   flag: string
 }
 
-export interface Countries {
+export interface Country {
   updated: number
   country: string
   countryInfo: CountryInfo

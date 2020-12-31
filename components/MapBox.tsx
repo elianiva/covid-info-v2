@@ -1,4 +1,5 @@
-import { CountryGeoJSON, Countries } from "../types"
+import { useEffect, useState } from "react"
+import { CountryGeoJSON, Country } from "../types"
 import { tw } from "twind"
 import "leaflet/dist/leaflet.css"
 import LeafletMap from "./LeafletMap"
@@ -8,8 +9,19 @@ export default function MapBox({
   apiData,
 }: {
   mapData: CountryGeoJSON | null
-  apiData: Countries[] | null
+  apiData: Country[] | null
 }) {
+  const [topThree, setTopThree] = useState<Country[]>()
+
+  useEffect(() => {
+    setTopThree(
+      apiData?.sort((a, b) => (a.cases > b.cases ? -1 : 1)).slice(0, 3)
+    )
+  }, [])
+
+  useEffect(() => {
+    console.log(topThree)
+  }, [topThree])
   return (
     <div
       className={tw`grid map-grid items-center col-start-1 col-end-5 row-start-2 row-end-5 bg-white rounded-md shadow-md p-4`}

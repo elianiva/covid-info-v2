@@ -1,8 +1,8 @@
-import { Countries, CountryGeoJSON } from "../types"
+import { Country, CountryGeoJSON } from "../types"
 
 export default class MapData {
   private geoJSON: CountryGeoJSON
-  private apiData: Countries[]
+  private apiData: Country[]
   private colorRange = {
     highest: "#991b1b",
     higher: "#dc2626",
@@ -13,7 +13,7 @@ export default class MapData {
     lowest: "#FFFFFF",
   }
 
-  constructor(geoJSON: any, apiData: Countries[]) {
+  constructor(geoJSON: any, apiData: Country[]) {
     this.geoJSON = geoJSON.default
     this.apiData = apiData
 
@@ -23,7 +23,7 @@ export default class MapData {
 
   private _appendConfirmedCases(
     geoJSON: CountryGeoJSON,
-    apiData: Countries[]
+    apiData: Country[]
   ): void {
     for (const country of geoJSON.features) {
       const currentCountry = apiData.find(

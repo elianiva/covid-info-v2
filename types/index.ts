@@ -1,2 +1,2 @@
-export type { Countries } from "./countries"
-export type { CountryGeoJSON, Country } from "./geojsonData"
+export type { Country } from "./countries"
+export type { CountryGeoJSON, Feature } from "./geojsonData"

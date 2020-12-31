@@ -1,4 +1,4 @@
-export interface Country {
+export interface Feature {
   type: string
   id: string
   properties: {
@@ -14,5 +14,5 @@ export interface Country {
 
 export interface CountryGeoJSON {
   type: string
-  features: Country[]
+  features: Feature[]
 }
