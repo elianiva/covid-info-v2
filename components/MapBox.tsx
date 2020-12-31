@@ -11,23 +11,23 @@ export default function MapBox({
   mapData: CountryGeoJSON | null
   apiData: Country[] | null
 }) {
-  const [topThree, setTopThree] = useState<Country[]>()
+  const [topTen, setTopTen] = useState<Country[]>()
 
   useEffect(() => {
-    setTopThree(
-      apiData?.sort((a, b) => (a.cases > b.cases ? -1 : 1)).slice(0, 3)
+    setTopTen(
+      apiData?.sort((a, b) => (a.cases > b.cases ? -1 : 1)).slice(0, 10)
     )
   }, [])
 
   useEffect(() => {
-    console.log(topThree)
-  }, [topThree])
+    console.log(topTen)
+  }, [topTen])
   return (
     <div
       className={tw`grid map-grid items-center col-start-1 col-end-5 row-start-2 row-end-5 bg-white rounded-md shadow-md p-4`}
     >
       <div className={tw`flex col-start-1 col-end-2 row-start-1 row-end-2`}>
-        <span className={tw`text-xl nunito font-semibold flex-1`}>
+        <span className={tw`text-lg nunito font-semibold flex-1`}>
           COVID-19 Affected Areas
         </span>
         <div className={tw`flex items-center gap-3`}>
@@ -52,8 +52,21 @@ export default function MapBox({
           ))}
         </div>
       </div>
-      <div className={tw`col-start-2 col-end-3 row-start-1 row-end-5`}>
-        <span className={tw`nunito font-semibold`}>Top Countries</span>
+      <div className={tw`contents`}>
+        <span
+          className={tw`col-start-2 col-end-3 row-start-1 row-end-2 nunito font-semibold text-lg`}
+        >
+          Top Countries
+        </span>
+        <div
+          className={tw`row-start-2 row-end-5 col-start-2 col-end-3 grid grid-row-10 h-full`}
+        >
+          {topTen?.map((country, idx) => (
+            <div className={tw`h-full`} key={idx}>
+              {country.country} | A: {country.cases}
+            </div>
+          ))}
+        </div>
       </div>
       <div
         className={tw`col-start-1 col-end-2 row-start-2 row-end-5 rounded-md h-full overflow-hidden`}
