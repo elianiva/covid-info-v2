@@ -1,7 +1,7 @@
-import { Map, GeoJSON } from "react-leaflet-universal"
-import { CountryGeoJSON, Country, Countries } from "../types"
+import { CountryGeoJSON, Countries } from "../types"
 import { tw } from "twind"
 import "leaflet/dist/leaflet.css"
+import LeafletMap from "./LeafletMap"
 
 export default function MapBox({
   mapData,
@@ -10,18 +10,6 @@ export default function MapBox({
   mapData: CountryGeoJSON | null
   apiData: Countries[] | null
 }) {
-  const formatNumber = (num: number): string =>
-    num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-
-  const eachFeature = (country: Country, layer: any) => {
-    const name: string = country.properties.name
-    const confirmedText: string = formatNumber(
-      country.properties.confirmed || 0
-    )
-    layer.bindPopup(`${name} | ${confirmedText} Confirmed Cases`)
-    layer.options.fillColor = country.properties.colour
-  }
-
   return (
     <div
       className={tw`grid map-grid items-center col-start-1 col-end-5 row-start-2 row-end-5 bg-white rounded-md shadow-md p-4`}
@@ -58,25 +46,7 @@ export default function MapBox({
       <div
         className={tw`col-start-1 col-end-2 row-start-2 row-end-5 rounded-md h-full overflow-hidden`}
       >
-        <Map
-          className={tw`w-full h-full`}
-          style={{ backgroundColor: "#f9f3f3" }}
-          center={[0, 0]}
-          zoom={2}
-          minZoom={1.25}
-          zoomSnap={0}
-        >
-          <GeoJSON
-            data={mapData?.features as any}
-            style={{
-              fillColor: "white",
-              weight: 1,
-              color: "#f9f3f3",
-              fillOpacity: 1,
-            }}
-            onEachFeature={eachFeature as any}
-          />
-        </Map>
+        <LeafletMap mapData={mapData} />
       </div>
     </div>
   )
