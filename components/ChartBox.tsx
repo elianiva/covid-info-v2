@@ -8,6 +8,6 @@ export default function ChartBox({
   data?: number
 }) {
   return (
-    <div className={tw`bg-white rounded-md shadow-md ${className}`}>{data}</div>
+    <div className={tw`bg-white rounded-md shadow-md row-start-1 row-end-2 ${className}`}>{data}</div>
   )
 }
