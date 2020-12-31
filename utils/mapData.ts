@@ -1,16 +1,15 @@
-import { Countries } from "../types/countries"
-import { CountryGeoJSON } from "../types/geojsonData"
+import { Countries, CountryGeoJSON } from "../types"
 
 export default class MapData {
   private geoJSON: CountryGeoJSON
   private apiData: Countries[]
   private colorRange = {
-    highest: "#BA201E",
-    higher: "#FC312F",
-    high: "#FD5756",
-    normal: "#FC7C7B",
-    low: "#FFA5A5",
-    lower: "#FFC8C8",
+    highest: "#991b1b",
+    higher: "#dc2626",
+    high: "#f87171",
+    normal: "#fca5a5",
+    low: "#fecaca",
+    lower: "#fee2e2",
     lowest: "#FFFFFF",
   }
 
@@ -41,7 +40,7 @@ export default class MapData {
 
       if (confirmed > 25e5) {
         country.properties.colour = this.colorRange.highest
-      }else if (confirmed > 1e6) {
+      } else if (confirmed > 1e6) {
         country.properties.colour = this.colorRange.higher
       } else if (confirmed > 5e5) {
         country.properties.colour = this.colorRange.high
@@ -49,7 +48,7 @@ export default class MapData {
         country.properties.colour = this.colorRange.normal
       } else if (confirmed > 5e4) {
         country.properties.colour = this.colorRange.low
-      } else if (confirmed > 1e4) {
+      } else if (confirmed > 5e3) {
         country.properties.colour = this.colorRange.lower
       } else {
         country.properties.colour = this.colorRange.lowest
@@ -57,7 +56,7 @@ export default class MapData {
     }
   }
 
-  get getResult(): CountryGeoJSON {
+  get getGeoJSON(): CountryGeoJSON {
     return this.geoJSON
   }
 }
