@@ -48,7 +48,14 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
           ))}
         </div>
       </div>
-      <CountryList countries={countries as Country[]} />
+      <div className={tw`contents`}>
+        <span
+          className={tw`flex items-center col(start-2 end-3) row(start-1 end-2) nunito font-bold text-lg`}
+        >
+          Top Countries
+        </span>
+        <CountryList countries={countries as Country[]} />
+      </div>
       <div
         className={tw`col(start-1 end-2) row(start-2 end-5) rounded-md h-full overflow-hidden`}
       >
