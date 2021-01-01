@@ -3,6 +3,7 @@ import { CountryGeoJSON, Country } from "../types"
 import { tw } from "twind"
 import "leaflet/dist/leaflet.css"
 import LeafletMap from "./LeafletMap"
+import TopCountry from "./TopCountry"
 
 interface MapBoxProps {
   mapData: CountryGeoJSON | null
@@ -23,7 +24,7 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
   }, [topTen])
   return (
     <div
-      className={tw`grid map-grid items-center col-start-1 col-end-5 row-start-2 row-end-5 bg-white rounded-md shadow-md p-4`}
+      className={tw`grid map-grid items-center col-start-1 col-end-5 row-start-2 row-end-6 bg-white rounded-md shadow-md p-4`}
     >
       <div className={tw`flex col-start-1 col-end-2 row-start-1 row-end-2`}>
         <span className={tw`text-lg nunito font-semibold flex-1`}>
@@ -58,12 +59,15 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
           Top Countries
         </span>
         <div
-          className={tw`row-start-2 row-end-5 col-start-2 col-end-3 grid grid-row-10 h-full`}
+          className={tw`grid grid-row-10 gap-2 row-start-2 row-end-5 col-start-2 col-end-3 h-full`}
         >
           {topTen?.map((country, idx) => (
-            <div className={tw`h-full`} key={idx}>
-              {country.country} | A: {country.cases}
-            </div>
+            <TopCountry
+              id={idx}
+              name={country.country}
+              confirmed={country.cases}
+              flag={country.countryInfo.flag}
+            />
           ))}
         </div>
       </div>
