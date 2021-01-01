@@ -38,7 +38,7 @@ export default function CountryList({ countries }: CountryListProps) {
       >
         {countries?.map((country, idx) => (
           <CountryItem
-            id={idx}
+            key={idx}
             name={country.country}
             confirmed={country.cases}
             flag={country.countryInfo.flag}
