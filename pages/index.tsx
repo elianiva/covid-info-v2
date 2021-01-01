@@ -12,7 +12,7 @@ interface HomeProps {
   apiData: Country[]
 }
 
-export default function Home({ apiData }: HomeProps): JSX.Element {
+export default function Home({ apiData }: HomeProps) {
   const [mapData, setMapData] = useState<CountryGeoJSON | null>(null)
 
   useEffect(() => {
