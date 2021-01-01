@@ -3,11 +3,11 @@ import { Map, GeoJSON } from "react-leaflet-universal"
 import { CountryGeoJSON, Feature } from "../types"
 import { formatNumber } from "../utils"
 
-export default function LaefletMap({
-  mapData,
-}: {
+interface LeafletMapProps {
   mapData: CountryGeoJSON | null
-}) {
+}
+
+export default function LaefletMap({ mapData }: LeafletMapProps) {
   const eachFeature = (country: Feature, layer: any) => {
     const name: string = country.properties.name
     const confirmedText: string = formatNumber(

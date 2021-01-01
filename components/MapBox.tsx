@@ -4,13 +4,12 @@ import { tw } from "twind"
 import "leaflet/dist/leaflet.css"
 import LeafletMap from "./LeafletMap"
 
-export default function MapBox({
-  mapData,
-  apiData,
-}: {
+interface MapBoxProps {
   mapData: CountryGeoJSON | null
   apiData: Country[] | null
-}) {
+}
+
+export default function MapBox({ mapData, apiData }: MapBoxProps) {
   const [topTen, setTopTen] = useState<Country[]>()
 
   useEffect(() => {

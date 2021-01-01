@@ -8,7 +8,11 @@ import MapBox from "../components/MapBox"
 import ChartBox from "../components/ChartBox"
 import * as countryData from "../data/countries.json"
 
-export default function Home({ apiData }: { apiData: Country[] }): JSX.Element {
+interface HomeProps {
+  apiData: Country[]
+}
+
+export default function Home({ apiData }: HomeProps): JSX.Element {
   const [mapData, setMapData] = useState<CountryGeoJSON | null>(null)
 
   useEffect(() => {
