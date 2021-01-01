@@ -1,4 +1,5 @@
 import { tw } from "twind"
+import { formatNumber } from "../utils"
 
 interface TopCountryProps {
   name: string
@@ -24,7 +25,7 @@ export default function TopCountry({
         alt={`${name}-flag`}
       />
       <span className={tw`flex-1 nunito font-bold text-md`}>{name}</span>
-      <span className={tw`text-red-700 font-medium`}>{confirmed}</span>
+      <span className={tw`nunito text-gray-800 `}>{formatNumber(confirmed)}</span>
     </div>
   )
 }
