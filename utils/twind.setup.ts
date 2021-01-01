@@ -2,7 +2,11 @@ import { setup } from "twind"
 
 setup({
   theme: {
-    extend: {},
+    extend: {
+      maxHeight: {
+        "80vh": "80vh"
+      }
+    },
   },
   plugins: {
     "main-grid": {

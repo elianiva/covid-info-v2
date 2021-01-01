@@ -3,7 +3,7 @@ import { CountryGeoJSON, Country } from "../types"
 import { tw } from "twind"
 import "leaflet/dist/leaflet.css"
 import LeafletMap from "./LeafletMap"
-import TopCountry from "./TopCountry"
+import CountryList from "./CountryList"
 
 interface MapBoxProps {
   mapData: CountryGeoJSON | null
@@ -11,20 +11,18 @@ interface MapBoxProps {
 }
 
 export default function MapBox({ mapData, apiData }: MapBoxProps) {
-  const [topTen, setTopTen] = useState<Country[]>()
+  const [countries, setCountries] = useState<Country[] | null>()
 
   useEffect(() => {
-    setTopTen(
-      apiData?.sort((a, b) => (a.cases > b.cases ? -1 : 1)).slice(0, 10)
-    )
+    setCountries(apiData?.sort((a, b) => (a.cases > b.cases ? -1 : 1)))
   }, [])
 
   useEffect(() => {
-    console.log(topTen)
-  }, [topTen])
+    console.log(countries)
+  }, [countries])
   return (
     <div
-      className={tw`grid map-grid items-center col-start-1 col-end-5 row-start-2 row-end-6 bg-white rounded-md shadow-md p-4`}
+      className={tw`grid map-grid items-center col-start-1 col-end-5 row-start-2 row-end-6 bg-white rounded-md shadow-md p-4 max-h-80vh`}
     >
       <div className={tw`flex col-start-1 col-end-2 row-start-1 row-end-2`}>
         <span className={tw`text-lg nunito font-semibold flex-1`}>
@@ -52,25 +50,7 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
           ))}
         </div>
       </div>
-      <div className={tw`contents`}>
-        <span
-          className={tw`col-start-2 col-end-3 row-start-1 row-end-2 nunito font-semibold text-lg`}
-        >
-          Top Countries
-        </span>
-        <div
-          className={tw`grid grid-row-10 gap-2 row-start-2 row-end-5 col-start-2 col-end-3 h-full`}
-        >
-          {topTen?.map((country, idx) => (
-            <TopCountry
-              id={idx}
-              name={country.country}
-              confirmed={country.cases}
-              flag={country.countryInfo.flag}
-            />
-          ))}
-        </div>
-      </div>
+      <CountryList countries={countries as Country[]} />
       <div
         className={tw`col-start-1 col-end-2 row-start-2 row-end-5 rounded-md h-full overflow-hidden`}
       >
