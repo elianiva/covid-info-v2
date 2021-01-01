@@ -1,17 +1,17 @@
 import { tw } from "twind"
 import { formatNumber } from "../utils"
 
-interface TopCountryProps {
+interface CountryItemProps {
   name: string
   flag: string
   confirmed: number
 }
 
-export default function TopCountry({
+export default function CountryItem({
   name,
   flag,
   confirmed,
-}: TopCountryProps) {
+}: CountryItemProps) {
   return (
     <div
       className={tw`flex items-center gap-3 border(& gray-200) rounded-md p-2`}
@@ -21,7 +21,7 @@ export default function TopCountry({
         src={flag}
         alt={`${name}-flag`}
       />
-      <span className={tw`flex-1 nunito font-bold text-md`}>{name}</span>
+      <span className={tw`flex-1 nunito font-bold`}>{name}</span>
       <span className={tw`nunito text-gray-800 `}>{formatNumber(confirmed)}</span>
     </div>
   )

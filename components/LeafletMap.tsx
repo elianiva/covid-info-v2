@@ -1,5 +1,5 @@
 import { tw } from "twind"
-import { Map, GeoJSON } from "react-leaflet-universal"
+import { MapContainer, GeoJSON } from "react-leaflet"
 import { CountryGeoJSON, Feature } from "../types"
 import { formatNumber } from "../utils"
 
@@ -18,7 +18,7 @@ export default function LaefletMap({ mapData }: LeafletMapProps) {
   }
 
   return (
-    <Map
+    <MapContainer
       className={tw`w-full h-full`}
       style={{ backgroundColor: "#f9f3f3" }}
       center={[0, 0]}
@@ -36,6 +36,6 @@ export default function LaefletMap({ mapData }: LeafletMapProps) {
         }}
         onEachFeature={eachFeature as any}
       />
-    </Map>
+    </MapContainer>
   )
 }
