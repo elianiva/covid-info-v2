@@ -6,7 +6,7 @@ import { MapData, fetchData } from "../utils"
 import { Country, CountryGeoJSON } from "../types"
 import MapBox from "../components/MapBox"
 import ChartBox from "../components/ChartBox"
-import * as countryData from "../data/countries.json"
+import * as countryData from "../assets/data/countries.json"
 
 interface HomeProps {
   apiData: Country[]
