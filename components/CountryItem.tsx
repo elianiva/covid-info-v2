@@ -16,7 +16,7 @@ export default function TopCountry({
 }: TopCountryProps) {
   return (
     <div
-      className={tw`flex items-center gap-3 border border-gray-200 rounded-md p-2`}
+      className={tw`flex items-center gap-3 border(& gray-200) rounded-md p-2`}
       key={id}
     >
       <img

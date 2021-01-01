@@ -22,9 +22,9 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
   }, [countries])
   return (
     <div
-      className={tw`grid map-grid items-center col-start-1 col-end-5 row-start-2 row-end-6 bg-white rounded-md shadow-md p-4 max-h-80vh`}
+      className={tw`grid(& map) items-center col(start-1 end-5) row(start-2 end-6) bg-white rounded-md shadow-md p-4 max-h-80vh`}
     >
-      <div className={tw`flex col-start-1 col-end-2 row-start-1 row-end-2`}>
+      <div className={tw`flex col(start-1 end-2) row(start-1 end-2)`}>
         <span className={tw`text-lg nunito font-semibold flex-1`}>
           COVID-19 Affected Areas
         </span>
@@ -40,7 +40,7 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
             <div className={tw`flex gap-1 items-center`} key={idx}>
               <div
                 className={tw`w-4 h-4 bg-${label[1]} rounded-sm ${
-                  label[1] === "white" && "border border-gray-300"
+                  label[1] === "white" && "border(& gray-300)"
                 }`}
               />
               <span className={tw`nunito text-red-800 text-sm`}>
@@ -52,7 +52,7 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
       </div>
       <CountryList countries={countries as Country[]} />
       <div
-        className={tw`col-start-1 col-end-2 row-start-2 row-end-5 rounded-md h-full overflow-hidden`}
+        className={tw`col(start-1 end-2) row(start-2 end-5) rounded-md h-full overflow-hidden`}
       >
         <LeafletMap mapData={mapData} />
       </div>

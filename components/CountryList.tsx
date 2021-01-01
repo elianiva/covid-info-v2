@@ -10,7 +10,7 @@ export default function CountryList({ countries }: CountryListProps) {
   return (
     <div className={tw`contents`}>
       <div
-        className={tw`flex items-center col-start-2 col-end-3 row-start-1 row-end-2`}
+        className={tw`flex items-center col(start-2 end-3) row(start-1 end-2)`}
       >
         <span className={tw`flex-1 nunito font-bold text-lg`}>
           Top Countries
@@ -21,7 +21,7 @@ export default function CountryList({ countries }: CountryListProps) {
         </div>
       </div>
       <div
-        className={tw`grid grid-row-10 gap-2 row-start-2 row-end-5 col-start-2 col-end-3 h-full overflow-y-auto`}
+        className={tw`grid(& row-10) gap-2 row(start-2 end-5) col(start-2 end-3) h-full overflow-y-auto`}
       >
         {countries?.map((country, idx) => (
           <CountryItem

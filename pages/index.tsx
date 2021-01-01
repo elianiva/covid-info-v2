@@ -25,12 +25,18 @@ export default function Home({ apiData }: HomeProps): JSX.Element {
       <Head>
         <title>Covid Info</title>
       </Head>
-      <div className={tw`grid main-grid grid-rows-4 gap-4 min-h-screen p-4`}>
+      <div className={tw`grid(& main rows-5) gap-4 min-h-screen p-4`}>
         <ChartBox className="col-start-1 col-end-2" />
         <ChartBox className="col-start-2 col-end-3" />
         <ChartBox className="col-start-3 col-end-4" />
         <ChartBox className="col-start-4 col-end-5" />
         <MapBox mapData={mapData} apiData={apiData} />
+        <div
+          className={tw`col(start-5 end-6) row(start-1 end-3) bg-white p-4 rounded-md shadow-md`}
+        ></div>
+        <div
+          className={tw`col(start-5 end-6) row(start-3 end-6) bg-white p-4 rounded-md shadow-md`}
+        ></div>
       </div>
     </>
   )
