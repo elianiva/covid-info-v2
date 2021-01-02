@@ -1,23 +1,32 @@
 import Head from "next/head"
+import dynamic from "next/dynamic"
 import { GetServerSideProps } from "next"
 import { useEffect, useState } from "react"
 import { tw } from "twind"
 import { MapData, fetchData } from "../utils"
 import { Country, CountryGeoJSON } from "../types"
 import MapBox from "../components/MapBox"
-import ChartBox from "../components/ChartBox"
 import GrowthBox from "../components/GrowthBox"
 import * as countryData from "../assets/data/countries.json"
 
+const ChartBox = dynamic(() => import("../components/ChartBox"), { ssr: false })
+
+type arrOfObject = { [key: string]: number }[]
+
 interface HomeProps {
-  apiData: Country[]
+  countries: Country[]
+  globalHistory: {
+    cases: arrOfObject
+    deaths: arrOfObject
+    recovered: arrOfObject
+  }
 }
 
-export default function Home({ apiData }: HomeProps) {
+export default function Home({ countries, globalHistory }: HomeProps) {
   const [mapData, setMapData] = useState<CountryGeoJSON | null>(null)
 
   useEffect(() => {
-    const mapdata = new MapData(countryData, apiData)
+    const mapdata = new MapData(countryData, countries)
     setMapData(mapdata.getGeoJSON)
   }, [])
 
@@ -45,18 +54,24 @@ export default function Home({ apiData }: HomeProps) {
         <div
           className={tw`col(start-4 end-5) row(start-1 end-3) bg-white p-4 rounded-md shadow-md`}
         ></div>
-        <GrowthBox apiData={apiData} />
+        <GrowthBox apiData={countries} />
       </div>
     </>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response: Country[] = await fetchData<Country[]>("countries?sort=cases")
+  const countries: Country[] = await fetchData<Country[]>(
+    "countries?sort=cases"
+  )
+  const globalHistory: Country[] = await fetchData<Country[]>(
+    "historical/all?lastdays=10"
+  )
 
   return {
     props: {
-      apiData: response,
+      countries,
+      globalHistory,
     },
   }
 }
