@@ -1,4 +1,3 @@
-// import { useEffect } from "react"
 import Chart from "react-apexcharts"
 import { tw } from "twind"
 import { css } from "twind/css"
@@ -95,7 +94,14 @@ export default function ChartBox({ className, data, label }: ChartBoxProps) {
             label === "Total Recovered" ? "text-green-600" : "text-red-600"
           }`}
         >
-          {Object.values(data)[0]}
+          <span
+            className={tw`pr-2 ${
+              label === "Total Recovered" ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {label === "Total Recovered" ? <>&#11206;</> : <>&#11205;</>}
+          </span>
+          {formatNumber((Object.values(data)[0] as unknown) as number)}
         </span>
       </span>
       <Chart options={chartOptions} series={series} type="area" height={160} />
