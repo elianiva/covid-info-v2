@@ -4,18 +4,24 @@ import { Country } from "../types"
 import CountryItem from "./CountryItem"
 
 interface CountryListProps {
-  countries: Country[] | null
+  countries: Country[]
+  type: keyof Country
 }
 
-export default function CountryList({ countries }: CountryListProps) {
+export default function CountryList({ countries, type }: CountryListProps) {
   const scrollbarStyle: CSSRules = {
+    "&": {
+      marginRight: "-0.5rem",
+    },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "#d4d4d4",
       borderRadius: "0.5rem",
       cursor: "pointer",
+      display: "none",
     },
     "&:hover::-webkit-scrollbar-thumb": {
       backgroundColor: "#b0b0b0",
+      display: "block",
     },
     "&::-webkit-scrollbar": {
       "background-color": "#ffffff",
@@ -34,7 +40,7 @@ export default function CountryList({ countries }: CountryListProps) {
         <CountryItem
           key={idx}
           name={country.country}
-          confirmed={country.cases}
+          confirmed={country[type] as number}
           flag={country.countryInfo.flag}
         />
       ))}

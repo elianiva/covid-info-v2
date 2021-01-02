@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic"
-import { useEffect, useState } from "react"
 import { CountryGeoJSON, Country } from "../types"
 import { tw } from "twind"
 import "leaflet/dist/leaflet.css"
@@ -9,15 +8,10 @@ const LeafletMap = dynamic(() => import("./LeafletMap"), { ssr: false })
 
 interface MapBoxProps {
   mapData: CountryGeoJSON | null
-  apiData: Country[] | null
+  apiData: Country[]
 }
 
 export default function MapBox({ mapData, apiData }: MapBoxProps) {
-  const [countries, setCountries] = useState<Country[] | null>()
-
-  useEffect(() => {
-    setCountries(apiData?.sort((a, b) => (a.cases > b.cases ? -1 : 1)))
-  }, [])
   return (
     <div
       className={tw`grid(& map) items-center col(start-1 end-5) row(start-2 end-6) bg-white rounded-md shadow-md p-4 max-h-full`}
@@ -54,7 +48,7 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
         >
           Top Countries
         </span>
-        <CountryList countries={countries as Country[]} />
+        <CountryList countries={apiData as Country[]} type="cases" />
       </div>
       <div
         className={tw`col(start-1 end-2) row(start-2 end-5) rounded-md h-full overflow-hidden`}

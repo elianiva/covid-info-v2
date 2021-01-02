@@ -42,7 +42,7 @@ export default function Home({ apiData }: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response: Country[] = await fetchData<Country[]>("countries")
+  const response: Country[] = await fetchData<Country[]>("countries?sort=cases")
 
   return {
     props: {
