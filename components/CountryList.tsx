@@ -37,11 +37,10 @@ export default function CountryList({
   return (
     <div
       className={tw`
-          grid(& row-10) gap-2 row(start-2 end-5) col(start-${gridCol[0]} end-${
-        gridCol[1]
-      }) h-full overflow-y-auto pr-1
-          ${css(scrollbarStyle)}
-        `}
+        grid(& row-10) gap-2 row(start-2 end-5)
+        col(start-${gridCol[0]} end-${gridCol[1]})
+        h-full overflow-y-auto pr-1 ${css(scrollbarStyle)}
+      `}
     >
       {countries?.map((country, idx) => (
         <CountryItem
