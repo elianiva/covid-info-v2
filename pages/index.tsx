@@ -41,14 +41,17 @@ export default function Home({ countries, globalHistory }: HomeProps) {
         <ChartBox
           className="col-start-1 col-end-2"
           data={globalHistory.cases}
+          label="Total Cases"
         />
         <ChartBox
           className="col-start-2 col-end-3"
           data={globalHistory.recovered}
+          label="Total Recovered"
         />
         <ChartBox
           className="col-start-3 col-end-4"
           data={globalHistory.deaths}
+          label="Total Deaths"
         />
         <MapBox mapData={mapData} apiData={countries} />
         <div
