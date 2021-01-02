@@ -36,7 +36,10 @@ export default class MapData {
   private _setColour(geoJSON: CountryGeoJSON): void {
     for (const country of geoJSON.features) {
       const confirmed = country.properties.confirmed
-      if (confirmed === undefined) continue
+      if (confirmed === undefined) {
+        country.properties.colour = this.colorRange.lowest
+        continue
+      }
 
       if (confirmed > 25e5) {
         country.properties.colour = this.colorRange.highest
