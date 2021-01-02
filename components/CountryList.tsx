@@ -6,9 +6,14 @@ import CountryItem from "./CountryItem"
 interface CountryListProps {
   countries: Country[]
   type: keyof Country
+  gridCol: [number, number]
 }
 
-export default function CountryList({ countries, type }: CountryListProps) {
+export default function CountryList({
+  countries,
+  type,
+  gridCol,
+}: CountryListProps) {
   const scrollbarStyle: CSSRules = {
     "&": {
       marginRight: "-0.5rem",
@@ -32,7 +37,9 @@ export default function CountryList({ countries, type }: CountryListProps) {
   return (
     <div
       className={tw`
-          grid(& row-10) gap-2 row(start-2 end-5) col(start-2 end-3) h-full overflow-y-auto pr-1
+          grid(& row-10) gap-2 row(start-2 end-5) col(start-${gridCol[0]} end-${
+        gridCol[1]
+      }) h-full overflow-y-auto pr-1
           ${css(scrollbarStyle)}
         `}
     >

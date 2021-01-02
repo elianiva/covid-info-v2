@@ -48,7 +48,11 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
         >
           Top Countries
         </span>
-        <CountryList countries={apiData as Country[]} type="cases" />
+        <CountryList
+          countries={apiData as Country[]}
+          type="cases"
+          gridCol={[2, 3]}
+        />
       </div>
       <div
         className={tw`col(start-1 end-2) row(start-2 end-5) rounded-md h-full overflow-hidden`}
