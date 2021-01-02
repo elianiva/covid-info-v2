@@ -10,6 +10,7 @@ import GrowthBox from "../components/GrowthBox"
 import * as countryData from "../assets/data/countries.json"
 
 const ChartBox = dynamic(() => import("../components/ChartBox"), { ssr: false })
+const RatioBox = dynamic(() => import("../components/RatioBox"), { ssr: false })
 
 type arrOfObject = { [key: string]: number }[]
 
@@ -20,9 +21,14 @@ interface HomeProps {
     deaths: arrOfObject
     recovered: arrOfObject
   }
+  globalData: Country
 }
 
-export default function Home({ countries, globalHistory }: HomeProps) {
+export default function Home({
+  countries,
+  globalHistory,
+  globalData,
+}: HomeProps) {
   const [mapData, setMapData] = useState<CountryGeoJSON | null>(null)
 
   useEffect(() => {
@@ -33,11 +39,9 @@ export default function Home({ countries, globalHistory }: HomeProps) {
   return (
     <>
       <Head>
-        <title>Covid Info</title>
+        <title>Covid Info v2</title>
       </Head>
-      <div
-        className={tw`grid(& main) gap-4 min-h-screen max-h-screen p-4`}
-      >
+      <div className={tw`grid(& main) gap-4 min-h-screen max-h-screen p-4`}>
         <ChartBox
           className="col-start-1 col-end-2"
           data={globalHistory.cases}
@@ -53,10 +57,8 @@ export default function Home({ countries, globalHistory }: HomeProps) {
           data={globalHistory.deaths}
           label="Total Deaths"
         />
+        <RatioBox data={globalData} />
         <MapBox mapData={mapData} apiData={countries} />
-        <div
-          className={tw`col(start-4 end-5) row(start-1 end-3) bg-white p-4 rounded-md shadow-md`}
-        ></div>
         <GrowthBox apiData={countries} />
       </div>
     </>
@@ -70,11 +72,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const globalHistory: Country[] = await fetchData<Country[]>(
     "historical/all?lastdays=10"
   )
+  const globalData: Country[] = await fetchData<Country[]>("all")
 
   return {
     props: {
       countries,
       globalHistory,
+      globalData,
     },
   }
 }
