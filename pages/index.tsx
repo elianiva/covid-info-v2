@@ -26,14 +26,24 @@ export default function Home({ apiData }: HomeProps) {
       <Head>
         <title>Covid Info</title>
       </Head>
-      <div className={tw`grid(& main rows-5) gap-4 min-h-screen max-h-screen p-4`}>
-        <ChartBox className="col-start-1 col-end-2" />
-        <ChartBox className="col-start-2 col-end-3" />
-        <ChartBox className="col-start-3 col-end-4" />
-        <ChartBox className="col-start-4 col-end-5" />
-        <MapBox mapData={mapData} apiData={apiData} />
+      <div
+        className={tw`grid(& main) gap-4 min-h-screen max-h-screen p-4`}
+      >
+        <ChartBox
+          className="col-start-1 col-end-2"
+          data={globalHistory.cases}
+        />
+        <ChartBox
+          className="col-start-2 col-end-3"
+          data={globalHistory.recovered}
+        />
+        <ChartBox
+          className="col-start-3 col-end-4"
+          data={globalHistory.deaths}
+        />
+        <MapBox mapData={mapData} apiData={countries} />
         <div
-          className={tw`col(start-5 end-6) row(start-1 end-3) bg-white p-4 rounded-md shadow-md`}
+          className={tw`col(start-4 end-5) row(start-1 end-3) bg-white p-4 rounded-md shadow-md`}
         ></div>
         <GrowthBox apiData={apiData} />
       </div>

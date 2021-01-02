@@ -22,7 +22,10 @@ export default function CountryItem({
         alt={`${name}-flag`}
       />
       <span className={tw`flex-1 nunito font-bold`}>{name}</span>
-      <span className={tw`nunito text-gray-800 `}>{formatNumber(confirmed)}</span>
+      <span className={tw`nunito text-gray-800`}>
+        {formatNumber(confirmed)}
+        <span className={tw`pl-2 text-red-600`}>&#11205;</span>
+      </span>
     </div>
   )
 }

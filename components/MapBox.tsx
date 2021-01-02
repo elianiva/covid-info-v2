@@ -14,7 +14,7 @@ interface MapBoxProps {
 export default function MapBox({ mapData, apiData }: MapBoxProps) {
   return (
     <div
-      className={tw`grid(& map) items-center col(start-1 end-5) row(start-2 end-6) bg-white rounded-md shadow-md p-4 max-h-full`}
+      className={tw`grid(& map) items-center col(start-1 end-4) row(start-2 end-6) bg-white rounded-md shadow-md p-4 max-h-full`}
     >
       <div className={tw`flex col(start-1 end-2) row(start-1 end-2)`}>
         <span className={tw`text-lg nunito font-semibold flex-1`}>
