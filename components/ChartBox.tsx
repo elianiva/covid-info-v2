@@ -9,9 +9,15 @@ interface ChartBoxProps {
   className: string
   data: arrOfObject
   label: string
+  name: string
 }
 
-export default function ChartBox({ className, data, label }: ChartBoxProps) {
+export default function ChartBox({
+  className,
+  data,
+  label,
+  name,
+}: ChartBoxProps) {
   const series = [
     {
       name: label,
@@ -78,7 +84,10 @@ export default function ChartBox({ className, data, label }: ChartBoxProps) {
   }
   return (
     <div
-      className={tw`relative bg-white rounded-md shadow-md row-start-1 row-end-2 ${className}`}
+      className={tw`
+        relative bg-white rounded-md shadow-md row-start-1 row-end-2
+        ${className}
+      `}
     >
       <span
         className={tw`absolute nunito text-lg font-bold ${css({
@@ -88,7 +97,8 @@ export default function ChartBox({ className, data, label }: ChartBoxProps) {
           },
         })}`}
       >
-        {label}
+        {label}{" "}
+        <span className={tw`text-gray-400`}>({name ? name : "Global"})</span>
         <span
           className={tw`block ${
             label === "Total Recovered" ? "text-green-600" : "text-red-600"

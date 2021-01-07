@@ -14,10 +14,13 @@ interface MapBoxProps {
 export default function MapBox({ mapData, apiData }: MapBoxProps) {
   return (
     <div
-      className={tw`grid(& map) items-center col(start-1 end-4) row(start-2 end-6) bg-white rounded-md shadow-md p-4 max-h-full`}
+      className={tw`
+        grid(& map) items-center col(start-1 end-4) row(start-2 end-6)
+        bg-white rounded-md shadow-md p-4 max-h-full
+      `}
     >
       <div className={tw`flex col(start-1 end-2) row(start-1 end-2)`}>
-        <span className={tw`text-lg nunito font-semibold flex-1`}>
+        <span className={tw`text-lg nunito font-semibold flex-1 text-gray-800`}>
           COVID-19 Affected Areas
         </span>
         <div className={tw`flex items-center gap-3`}>
@@ -27,7 +30,7 @@ export default function MapBox({ mapData, apiData }: MapBoxProps) {
             ["500K+", "red-300"],
             ["250K+", "red-200"],
             ["50K+", "red-100"],
-            ["5K+", "white"],
+            ["0+", "white"],
           ].map((label: string[], idx: number) => (
             <div className={tw`flex gap-1 items-center`} key={idx}>
               <div
