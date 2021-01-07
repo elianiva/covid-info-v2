@@ -44,7 +44,7 @@ export default function CountryList({
       `countries/${country.toLowerCase()}`
     )
     const newHist = await fetchData<CountryHist>(
-      `historical/${country.toLowerCase()}`
+      `historical/${country.toLowerCase()}?lastdays=10`
     )
 
     selected?.setValue({
