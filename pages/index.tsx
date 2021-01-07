@@ -48,17 +48,17 @@ export default function Home({
       <div className={tw`grid(& main) gap-4 min-h-screen max-h-screen p-4`}>
         <ChartBox
           className="col-start-1 col-end-2"
-          data={selected?.value.hist?.cases as arrOfObject}
+          data={selected?.value.hist?.cases as ArrOfObject}
           label="Total Cases"
         />
         <ChartBox
           className="col-start-2 col-end-3"
-          data={selected?.value.hist?.recovered as arrOfObject}
+          data={selected?.value.hist?.recovered as ArrOfObject}
           label="Total Recovered"
         />
         <ChartBox
           className="col-start-3 col-end-4"
-          data={selected?.value.hist?.deaths as arrOfObject}
+          data={selected?.value.hist?.deaths as ArrOfObject}
           label="Total Deaths"
         />
         <RatioBox data={selected?.value.country as Country} />
@@ -73,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const countries: Country[] = await fetchData<Country[]>(
     "countries?sort=cases"
   )
-  const globalHistory: arrOfObject = await fetchData<arrOfObject>(
+  const globalHistory: ArrOfObject = await fetchData<ArrOfObject>(
     "historical/all?lastdays=10"
   )
   const globalData: Country[] = await fetchData<Country[]>("all")
