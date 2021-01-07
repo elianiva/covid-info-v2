@@ -15,7 +15,7 @@ export default function ChartBox({ className, data, label }: ChartBoxProps) {
   const series = [
     {
       name: label,
-      data: Object.values(data),
+      data: (data && Object.values(data)) || Array.from(new Array(10).fill(0)),
     },
   ]
   const chartOptions = {
@@ -45,7 +45,7 @@ export default function ChartBox({ className, data, label }: ChartBoxProps) {
     subtitle: {
       show: false,
     },
-    labels: Object.keys(data),
+    labels: data && Object.keys(data),
     yaxis: {
       labels: {
         show: false,
@@ -101,7 +101,9 @@ export default function ChartBox({ className, data, label }: ChartBoxProps) {
           >
             {label === "Total Recovered" ? <>&#11206;</> : <>&#11205;</>}
           </span>
-          {formatNumber((Object.values(data)[0] as unknown) as number)}
+          {data
+            ? formatNumber((Object.values(data).slice(-1) as unknown) as number)
+            : "Historical data was not found"}
         </span>
       </span>
       <Chart options={chartOptions} series={series} type="area" height={160} />
