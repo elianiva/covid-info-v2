@@ -1,7 +1,10 @@
+import { useContext } from "react"
 import { tw, CSSRules } from "twind"
 import { css } from "twind/css"
-import { Country } from "../types"
+import { Country, CountryHist } from "../types"
 import CountryItem from "./CountryItem"
+import { fetchData } from "../utils"
+import { SelectedContext } from "../context/selectedCountry"
 
 interface CountryListProps {
   countries: Country[]
@@ -14,6 +17,8 @@ export default function CountryList({
   type,
   gridCol,
 }: CountryListProps) {
+  const selected = useContext(SelectedContext)
+
   const scrollbarStyle: CSSRules = {
     "&": {
       marginRight: "-0.5rem",
@@ -34,12 +39,26 @@ export default function CountryList({
     },
   }
 
+  const getNewData = async (country: string): Promise<void> => {
+    const newCountry = await fetchData<Country>(
+      `countries/${country.toLowerCase()}`
+    )
+    const newHist = await fetchData<CountryHist>(
+      `historical/${country.toLowerCase()}`
+    )
+
+    selected?.setValue({
+      country: newCountry,
+      hist: newHist.timeline,
+    })
+  }
+
   return (
     <div
       className={tw`
-        grid(& row-10) gap-2 row(start-2 end-5)
-        col(start-${gridCol[0]} end-${gridCol[1]})
-        h-full overflow-y-auto pr-1 ${css(scrollbarStyle)}
+      grid(& row-10) gap-2 row(start-2 end-5)
+      col(start-${gridCol[0]} end-${gridCol[1]})
+      h-full overflow-y-auto pr-1 ${css(scrollbarStyle)}
       `}
     >
       {countries?.map((country, idx) => (
@@ -48,6 +67,7 @@ export default function CountryList({
           name={country.country}
           confirmed={country[type] as number}
           flag={country.countryInfo.flag}
+          onClick={async () => await getNewData(country.country)}
         />
       ))}
     </div>

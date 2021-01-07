@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next"
 import { useEffect, useState, useContext } from "react"
 import { tw } from "twind"
 import { MapData, fetchData } from "../utils"
-import { Country, CountryGeoJSON } from "../types"
+import { Country, CountryGeoJSON, ArrOfObject } from "../types"
 import MapBox from "../components/MapBox"
 import GrowthBox from "../components/GrowthBox"
 import { SelectedContext } from "../context/selectedCountry"
@@ -13,14 +13,12 @@ import * as countryData from "../assets/data/countries.json"
 const ChartBox = dynamic(() => import("../components/ChartBox"), { ssr: false })
 const RatioBox = dynamic(() => import("../components/RatioBox"), { ssr: false })
 
-type arrOfObject = { [key: string]: number }[]
-
 interface HomeProps {
   countries: Country[]
   globalHistory: {
-    cases: arrOfObject
-    deaths: arrOfObject
-    recovered: arrOfObject
+    cases: ArrOfObject
+    deaths: ArrOfObject
+    recovered: ArrOfObject
   }
   globalData: Country
 }

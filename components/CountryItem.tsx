@@ -5,16 +5,19 @@ interface CountryItemProps {
   name: string
   flag: string
   confirmed: number
+  onClick: () => void
 }
 
 export default function CountryItem({
   name,
   flag,
   confirmed,
+  onClick,
 }: CountryItemProps) {
   return (
     <div
-      className={tw`flex items-center gap-3 border(& gray-200) rounded-md p-2`}
+      className={tw`flex items-center gap-3 border(& gray-200) rounded-md p-2 cursor-pointer hover:bg-gray-200`}
+      onClick={onClick}
     >
       <img
         className={tw`w-8 h-4 object-cover`}
