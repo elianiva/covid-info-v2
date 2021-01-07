@@ -10,7 +10,7 @@ interface RatioBoxProps {
 export default function RatioBox({ data }: RatioBoxProps) {
   const series: [number] = [
     parseFloat(
-      ((data.recovered / (data.cases + data.active)) * 100).toFixed(2)
+      ((data.recovered / data.cases) * 100).toFixed(2)
     ),
   ]
   const chartOptions = {
@@ -100,7 +100,7 @@ export default function RatioBox({ data }: RatioBoxProps) {
       <div className={tw`flex flex-col justify-between align-center`}>
         <span className={tw`nunito font-bold text-gray-400`}>
           <span className={tw`text-gray-700`}>
-            {formatNumber(data.cases + data.active)}
+            {formatNumber(data.cases)}
           </span>{" "}
           Affected
         </span>
