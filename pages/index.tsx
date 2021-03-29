@@ -49,19 +49,19 @@ export default function Home({
         <ChartBox
           className="col-start-1 col-end-2"
           data={selected?.value.hist?.cases as ArrOfObject}
-          name={selected?.value?.country?.country as string}
+          name={selected?.value.country?.country as string}
           label="Total Cases"
         />
         <ChartBox
           className="col-start-2 col-end-3"
           data={selected?.value.hist?.recovered as ArrOfObject}
-          name={selected?.value?.country?.country as string}
+          name={selected?.value.country?.country as string}
           label="Total Recovered"
         />
         <ChartBox
           className="col-start-3 col-end-4"
           data={selected?.value.hist?.deaths as ArrOfObject}
-          name={selected?.value?.country?.country as string}
+          name={selected?.value.country?.country as string}
           label="Total Deaths"
         />
         <RatioBox data={selected?.value.country as Country} />

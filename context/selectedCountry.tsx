@@ -1,12 +1,10 @@
 import { createContext, useState, Dispatch, SetStateAction } from "react"
-import { Country } from "../types"
-
-type arrOfObject = { [key: string]: number }[]
+import { Country, ArrOfObject } from "../types"
 
 interface Hist {
-  cases: arrOfObject
-  deaths: arrOfObject
-  recovered: arrOfObject
+  cases: ArrOfObject
+  deaths: ArrOfObject
+  recovered: ArrOfObject
 }
 
 interface SelectedItem {

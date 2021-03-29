@@ -1,4 +1,4 @@
-export type ArrOfObject = { [key: string]: number }[]
+export type ArrOfObject = Array<Record<string, number>>
 
 export interface CountryHist {
   country: string

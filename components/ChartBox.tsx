@@ -2,12 +2,11 @@ import Chart from "react-apexcharts"
 import { tw } from "twind"
 import { css } from "twind/css"
 import { formatNumber } from "../utils"
-
-type arrOfObject = { [key: string]: number }[]
+import { ArrOfObject } from "../types"
 
 interface ChartBoxProps {
   className: string
-  data: arrOfObject
+  data: ArrOfObject
   label: string
   name: string
 }
